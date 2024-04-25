@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",         /* Especifica la versión de ECMAScript a la que se compila tu código */
+    "module": "commonjs",       /* Especifica el sistema de módulos que se utiliza en el código compilado */
+    "strict": true,             /* Habilita todas las opciones de comprobación estricta de TypeScript */
+    "esModuleInterop": true,    /* Habilita la interoperabilidad de módulos entre CommonJS y ES6 */
+    "skipLibCheck": true,       /* Omite la comprobación de las definiciones de tipo de las dependencias del proyecto */
+    "forceConsistentCasingInFileNames": true,  /* Obliga a que los nombres de archivo tengan la misma capitalización */
+    "outDir": "./dist",         /* Directorio de salida para los archivos compilados */
+    "rootDir": "./src",         /* Directorio raíz de los archivos fuente de TypeScript */
+    "declaration": true,        /* Genera archivos de declaración (.d.ts) para tu código compilado */
+    "sourceMap": true           /* Genera archivos de mapa de origen (.map) para depuración */
+  },
+  "include": [
+    "src/**/*.ts"              /* Patrones de archivos que se incluirán en la compilación */
+  ],
+  "exclude": [
+    "node_modules"             /* Carpetas y archivos que se excluirán de la compilación */
+  ]
+}

@@ -1,0 +1,53 @@
+service: aws-softek-starwars
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:*"
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/Vehiculos"
+
+functions:
+  getVehiculosSwapi:
+    handler: src/handlers/getVehiculosSwapiHandler.getVehiculosSwapiHandler
+    events:
+      - http:
+          path: vehiculos-swapi
+          method: get
+
+  getVehiculos:
+    handler: src/handlers/getVehiculosHandler.getVehiculosHandler
+    events:
+      - http:
+          path: vehiculos
+          method: get
+
+  createVehiculo:
+    handler: src/handlers/createVehiculoHandler.createVehiculoHandler
+    events:
+      - http:
+          path: vehiculos
+          method: post
+
+resources:
+  Resources:
+    VehiculosTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: Vehiculos
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+
+plugins:
+  - serverless-offline
+  - serverless-esbuild
